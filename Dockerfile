@@ -1,5 +1,4 @@
 FROM node:16
-
 # Creating workdir with name app
 RUN mkdir /app
 # Making the app folder as the work directory 
@@ -11,7 +10,8 @@ RUN npm install
 # Copying all files to the container
 COPY . .
 # Build the react app
-RUN npm build
+RUN npm run build
+
 # React app port number
 EXPOSE 3000
 # Starting the React app  
