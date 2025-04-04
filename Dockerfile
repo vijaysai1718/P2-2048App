@@ -1,6 +1,6 @@
 FROM node:16
 # Creating workdir with name app
-RUN mkdir /app
+RUN mkdir app
 # Making the app folder as the work directory 
 WORKDIR /app
 # Copying the all package.json files and package-lock.json to the container folder 
