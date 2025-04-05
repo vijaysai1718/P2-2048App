@@ -1,7 +1,7 @@
 #!/bin/bash
-RED="\e[30m"
-GREEN="\e[31m"
-Normal= "\e[32m"
+RED="\e[31m"
+GREEN="\e[32m"
+Normal="\e[0m"
 user=$(id -u)
 
 if [ $user -ne 0 ] 
@@ -57,29 +57,31 @@ validate $? "Aws CLI"
  newgrp docker
  validate $? "Docker"
 
- #Installation of java
- apt update
-apt install fontconfig openjdk-17-jre
-java -version
-openjdk version "17.0.13" 2024-10-15
-OpenJDK Runtime Environment (build 17.0.13+11-Debian-2)
-OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
- validate $? "Java"
 
 
  #Installation of jenkins 
-wget -O /usr/share/keyrings/jenkins-keyring.asc  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"  https://pkg.jenkins.io/debian-stable binary/ |  tee /etc/apt/sources.list.d/jenkins.list > /dev/null
- apt-get update
- apt-get install jenkins
- validate $? "Jenkins"
+#!/bin/bash
+ apt update -y
+#sudo apt upgrade -y
+wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+ apt update -y
+ apt install temurin-17-jdk -y
+/usr/bin/java --version
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | ] tee \
+                  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+                  https://pkg.jenkins.io/debian-stable binary/ |  tee \
+                              /etc/apt/sources.list.d/jenkins.list > /dev/null
+ apt-get update -y
+ apt-get install jenkins -y
+ systemctl start jenkins
+ systemctl status jenkins
 
  #Installation of trivy 
-apt-get install wget gnupg
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-apt-get update
-apt-get install trivy
-validate $? "trivy"
-
+ apt-get install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor |  tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" |  tee -a /etc/apt/sources.list.d/trivy.list
+ apt-get update
+ apt-get install trivy -y
 
