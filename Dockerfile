@@ -10,7 +10,7 @@ RUN npm install
 # Copying all files to the containers
 COPY . .
 # Build the react app
-RUN npm  build
+RUN npm run build
 
 # React app port number
 EXPOSE 3000
