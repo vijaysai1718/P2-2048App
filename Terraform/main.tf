@@ -9,6 +9,11 @@ key_name = aws_key_pair.secretkey.key_name
 user_data = file("Installation.sh")
 vpc_security_group_ids = [aws_security_group.sg_id.id]
 
+root_block_device {
+    volume_size = 30        # 30 GB EBS
+    volume_type = "gp2"     # General Purpose SSD (can be gp3 too)
+  }
+  
 }
 
 #creating the key pair 
@@ -31,6 +36,12 @@ resource "aws_security_group" "sg_id" {
  ingress {
     from_port = "80"
     to_port = "80"
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+ }
+ ingress {
+    from_port = "3000"
+    to_port = "3000"
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
  }
