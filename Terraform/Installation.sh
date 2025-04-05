@@ -2,7 +2,7 @@
 RED="\e[30m"
 GREEN="\e[31m"
 Normal= "\e[32m"
-user=$ ( id -u )
+user=$ (id -u)
 
 if [ $user -ne 0 ] 
 then 

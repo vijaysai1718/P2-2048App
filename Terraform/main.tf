@@ -13,7 +13,7 @@ root_block_device {
     volume_size = 30        # 30 GB EBS
     volume_type = "gp2"     # General Purpose SSD (can be gp3 too)
   }
-  
+
 }
 
 #creating the key pair 
@@ -27,24 +27,16 @@ resource "aws_security_group" "sg_id" {
 
  name = "allow_ssh_http"
  description = "allow ssh and http traffic"
- ingress {
-    from_port = "22"
-    to_port = "22"
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+ dynamic ingress {
+    for_each = var.securitygroupids
+    content {
+       from_port = ingress.value["from_port"]
+    to_port = ingress.value["to_port"]
+    protocol =ingress.value["protocol"]
+    cidr_blocks =ingress.value["cidr_blocks"]
  }
- ingress {
-    from_port = "80"
-    to_port = "80"
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
- }
- ingress {
-    from_port = "3000"
-    to_port = "3000"
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
- }
+    }
+   
 
  egress {
     from_port = "0"
