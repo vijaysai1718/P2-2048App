@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 # Installing the all dependencies
 RUN npm install 
-# Copying all files to the container
+# Copying all files to the containers
 COPY . .
 # Build the react app
 RUN npm run build
