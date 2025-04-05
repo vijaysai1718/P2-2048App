@@ -15,10 +15,10 @@ fi
 validate()
 if [ $1 -ne 0 ]
 then 
-echo -e "Installation of $2 is $RED Failure"
+echo -e "Installation of $2 is $RED Failure $Normal"
 exit
 else
-echo -e "Installation of $2 is $GREEN Success"
+echo -e "Installation of $2 is $GREEN Success $Normal"
 fi
 
 
@@ -59,7 +59,7 @@ validate $? "Aws CLI"
 
  #Installation of java
  apt update
- apt install fontconfig openjdk-17-jre
+apt install fontconfig openjdk-17-jre
 java -version
 openjdk version "17.0.13" 2024-10-15
 OpenJDK Runtime Environment (build 17.0.13+11-Debian-2)
@@ -68,11 +68,8 @@ OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
 
 
  #Installation of jenkins 
-wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
-  https://pkg.jenkins.io/debian-stable binary/ |  tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
+wget -O /usr/share/keyrings/jenkins-keyring.asc  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"  https://pkg.jenkins.io/debian-stable binary/ |  tee /etc/apt/sources.list.d/jenkins.list > /dev/null
  apt-get update
  apt-get install jenkins
  validate $? "Jenkins"
