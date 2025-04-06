@@ -22,42 +22,41 @@ echo -e "Installation of $2 is $GREEN Success $Normal"
 fi
 
 
-# Install Terraform
+# # Install Terraform
 
-wget -O - https://apt.releases.hashicorp.com/gpg |  gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" |  tee /etc/apt/sources.list.d/hashicorp.list
-apt update &&  apt install terraform
-validate $? "Terraform"
-
-
-# Install kubectl
-apt update
-apt install curl -y
-curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
-install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-kubectl version --client
-validate $? "Kubectl"
+# wget -O - https://apt.releases.hashicorp.com/gpg |  gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+# echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" |  tee /etc/apt/sources.list.d/hashicorp.list
+# apt update &&  apt install terraform
+# validate $? "Terraform"
 
 
-# Install AWS CLI 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
- apt-get install unzip -y
-unzip awscliv2.zip
- ./aws/install
-validate $? "Aws CLI"
+# # Install kubectl
+# apt update
+# apt install curl -y
+# curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+# install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+# kubectl version --client
+# validate $? "Kubectl"
 
-#Installing the Docker
 
- apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
- add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
- systemctl enable docker &&  systemctl start docker
- apt install docker-ce docker-ce-cli containerd.io -y
- usermod -aG docker ubuntu
- newgrp docker
- chmod 777 /var/run/docker.sock
+# # Install AWS CLI 
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#  apt-get install unzip -y
+# unzip awscliv2.zip
+#  ./aws/install
+# validate $? "Aws CLI"
 
- validate $? "Docker"
+# #Installing the Docker
+
+#  apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+#  curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
+#  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
+#  systemctl enable docker &&  systemctl start docker
+#  apt install docker-ce docker-ce-cli containerd.io -y
+#  usermod -aG docker ubuntu
+#  newgrp docker
+#  chmod 777 /var/run/docker.sock
+#  validate $? "Docker"
  
 
 
