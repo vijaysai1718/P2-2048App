@@ -55,7 +55,10 @@ validate $? "Aws CLI"
  apt install docker-ce docker-ce-cli containerd.io -y
  usermod -aG docker ubuntu
  newgrp docker
+ chmod 777 /var/run/docker.sock
+
  validate $? "Docker"
+ 
 
 
 
