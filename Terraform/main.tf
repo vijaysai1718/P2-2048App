@@ -1,6 +1,6 @@
 resource "aws_instance" "workstation" {
 
-instance_type = "t3.medium"
+instance_type = "t3.large"
 ami = data.aws_ami.ami.id
 tags = {
     Name = "WorkStation"
