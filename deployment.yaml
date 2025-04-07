@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 2048
+  name: "2048"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      name: 2048
+      name: "2048"
   template:
     metadata:
       labels:
-        name: 2048
+        name: "2048"
     spec:
       containers:
         - name: 2048game
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: 2048-service
+  name: "2048-service"
 spec:
   selector:
-    name: 2048
+    name: "2048"
   ports:
     - protocol: TCP
       port: 80
