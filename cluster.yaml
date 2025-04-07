@@ -1,0 +1,12 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name : "Expense"
+  region: us-east-1
+managedNodeGroups:
+ - name: expense
+   desiredCapacity: 1
+   instanceType: "t3.micro"
+   spot: true
+
+

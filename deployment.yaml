@@ -1,34 +1,34 @@
-apiVersion: apps/v1
-kind: Deployment
+
+apiVersion: v1
+kind: Deloyment 
 metadata:
-  name: react-app-deployment
+ name:2048
 spec:
-  replicas: 3  # Adjust the number of replicas as needed
+  replica: 2
   selector:
-    matchLabels:
-      app: react-app
+   matchlabels:
+     name: 2048
   template:
     metadata:
-      labels:
-        app: react-app
+      lables:
+      name: 2048
     spec:
       containers:
-        - name: react-app-container
-          image: sevenajay/2048:latest  # Use your actual Docker image name and tag
-          ports:
-            - containerPort: 3000  # The port your React app is listening on
-
+        - name: 2048game
+          image: vijaysai1718/2048:latest 
+          ports: 
+          -containerport: 3000
 ---
-apiVersion: v1
+apiversion: v1
 kind: Service
 metadata:
-  name: react-app-service
+ name: 2048-service
 spec:
-  selector:
-    app: react-app
+ selector: 
+  labels:
+   name: 2048
   ports:
-    - protocol: TCP
-      port: 80  # The port exposed by the service within the cluster
-      targetPort: 3000  # The port your React app is listening on inside the pod
+   - protocol: tcp
+     port: 3000
+     targetport: 3000
   type: LoadBalancer
-
