@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "2048service"
+  name: "servicefor-2048"
 spec:
   selector:
     name: "2048"
