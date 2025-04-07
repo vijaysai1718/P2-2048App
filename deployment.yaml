@@ -1,34 +1,32 @@
-
-apiVersion: v1
-kind: Deloyment 
+apiVersion: apps/v1
+kind: Deployment
 metadata:
- name:2048
+  name: 2048
 spec:
-  replica: 2
+  replicas: 2
   selector:
-   matchlabels:
-     name: 2048
+    matchLabels:
+      name: 2048
   template:
     metadata:
-      lables:
-      name: 2048
+      labels:
+        name: 2048
     spec:
       containers:
         - name: 2048game
-          image: vijaysai1718/2048:latest 
-          ports: 
-          -containerport: 3000
+          image: vijaysai1718/2048:latest
+          ports:
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: 2048-service
+  name: 2048-service
 spec:
- selector: 
-  labels:
-   name: 2048
+  selector:
+    name: 2048
   ports:
-   - protocol: tcp
-     port: 3000
-     targetport: 3000
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
   type: LoadBalancer
