@@ -1,37 +1,36 @@
-# Getting Started with 2048
+# 🚀 **DevOps Project: 2048 Deployment**  
 
-This game (2048) was built using **React** and **TypeScript**. The unique part of this example is animations. The animations in React aren't that straightforward, so I hope you can learn something new from it.
+Welcome to the **2048 Game Deployment** project! This project demonstrates how to deploy a **2048 Game application** using modern DevOps tools and practices, following a **DevSecOps** approach.  
 
-**Wondering how was that built?** You can find a video tutorial on [my YouTube Channel](https://www.youtube.com/channel/UCJV16_5c4A0amyBZSI4yP6A)
+---
 
-## How To Play?
+## 🛠️ **Tools & Services Used**
 
-You can play 2048 on [Github pages](https://mateuszsokola.github.io/2048-in-react/)
+| **Category**       | **Tools**                                                                                                                                                                                                 |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Version Control** | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)                                                                                                       |
+| **Code Quality**    | ![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=flat-square&logo=sonarqube&logoColor=white)                                                                                              |
+| **Containerization**| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)                                                                                                       |
+| **Orchestration**   | ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)                                                                                          |
+| **Security**        | ![Trivy](https://img.shields.io/badge/Trivy-00979D?style=flat-square&logo=trivy&logoColor=white)         |
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚦 **Project Stages**
 
-### `yarn start`
+### **Phase 1: Deployment to Docker Container**
+- Containerize the application using Docker.
+- Build and push Docker images to a container registry.
+- Run the application in a Docker container.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **Phase 2: Deployment to EKS Cluster with Monitoring**
+- Deploy the application to an **Amazon EKS (Elastic Kubernetes Service)** cluster.
+- Implement **Trivy** for vulnerability scanning  for security best practices.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn build`
+## 📂 **Code Repository**
+Explore the code and contribute to the project:  
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vijaysai1718/P2-2048App.git)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

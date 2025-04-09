@@ -8,7 +8,7 @@ terraform {
     }
       backend "s3" {
     bucket = "vijay-remote-state"
-    key    = "2048-game"
+    key    = "2048-new"
     region = "us-east-1"
     dynamodb_table = "vijay-remotestate-lock"
   }
