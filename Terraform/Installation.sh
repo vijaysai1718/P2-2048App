@@ -11,7 +11,7 @@ exit 1
 else
 echo "you are the super user installation will be inprogress"
 fi
-
+#function for validation
 validate()
 if [ $1 -ne 0 ]
 then 
