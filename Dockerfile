@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 # Creating workdir with name app
 RUN mkdir app
 # Making the app folder as the work directory 
